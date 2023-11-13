@@ -33,7 +33,7 @@ Make sure you update often and check the [Changelog](https://www.okx.com/docs-v5
 #### Step 2: install python-okx
 
 ```python
-pip install python-okx
+pip install https://github.com/SanyueHan/python-okx/archive/develop.zip
 ```
 
 #### Step 3: Run examples

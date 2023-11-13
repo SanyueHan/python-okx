@@ -2,12 +2,12 @@ import json
 
 import httpx
 
-from . import consts as c, utils, exceptions
+from . import consts as c, utils
 
 
 class Client(object):
 
-    def __init__(self, api_key = '-1', api_secret_key = '-1', passphrase = '-1', use_server_time=False, flag='1', base_api = c.API_URL,debug = 'True'):
+    def __init__(self, api_key='-1', api_secret_key='-1', passphrase='-1', use_server_time=False, flag='1', base_api=c.API_URL, debug='True'):
         self.API_KEY = api_key
         self.API_SECRET_KEY = api_secret_key
         self.PASSPHRASE = passphrase
@@ -30,9 +30,9 @@ class Client(object):
         else:
             header = utils.get_header_no_sign(self.flag, self.debug)
         response = None
-        if self.debug == True:
-            print('domain:',self.domain)
-            print('url:',request_path)
+        if self.debug:
+            print('domain:', self.domain)
+            print('url:', request_path)
         if method == c.GET:
             response = self.client.get(request_path, headers=header)
         elif method == c.POST:

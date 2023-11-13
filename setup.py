@@ -1,15 +1,13 @@
 import setuptools
 import okx
-with open("README.md", "r") as fh:
-    long_description = fh.read()
+
 
 setuptools.setup(
-    name="python-okx",
+    name="python-okx-hsy",
     version=okx.__version__,
-    author="okxv5api",
-    author_email="api@okg.com",
+    author="Han Sanyue",
+    author_email="hansanyue@hotmail.com",
     description="Python SDK for OKX",
-    long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://okx.com/docs-v5/",
     packages=setuptools.find_packages(),
