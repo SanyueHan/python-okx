@@ -4,15 +4,14 @@ from .consts import *
 
 class TradingDataAPI(Client):
 
-    def __init__(self, api_key='-1', api_secret_key='-1', passphrase='-1', use_server_time=False, flag='1', domain = 'https://www.okx.com',debug = True):
-        Client.__init__(self, api_key, api_secret_key, passphrase, use_server_time, flag, domain,debug)
-
+    def __init__(self, api_key='-1', api_secret_key='-1', passphrase='-1', use_server_time=False, flag='1', domain='https://www.okx.com', debug=True):
+        Client.__init__(self, api_key, api_secret_key, passphrase, use_server_time, flag, domain, debug)
 
     def get_support_coin(self):
         return self._request_without_params(GET, SUPPORT_COIN)
 
-    def get_taker_volume(self, ccy, instType, begin='', end='', period=''):
-        params = {'ccy': ccy, 'instType': instType, 'begin': begin, 'end': end, 'period': period}
+    def get_taker_volume(self, ccy, inst_type, begin='', end='', period=''):
+        params = {'ccy': ccy, 'instType': inst_type, 'begin': begin, 'end': end, 'period': period}
         return self._request_with_params(GET, TAKER_VOLUME, params)
 
     def get_margin_lending_ratio(self, ccy, begin='', end='', period=''):
@@ -39,17 +38,10 @@ class TradingDataAPI(Client):
         params = {'ccy': ccy, 'period': period}
         return self._request_with_params(GET, OPEN_INTEREST_VOLUME_EXPIRY, params)
 
-    def get_interest_volume_strike(self, ccy, expTime, period=''):
-        params = {'ccy': ccy, 'expTime': expTime, 'period': period}
+    def get_interest_volume_strike(self, ccy, exp_time, period=''):
+        params = {'ccy': ccy, 'expTime': exp_time, 'period': period}
         return self._request_with_params(GET, INTEREST_VOLUME_STRIKE, params)
 
     def get_taker_block_volume(self, ccy, period=''):
         params = {'ccy': ccy, 'period': period}
         return self._request_with_params(GET, TAKER_FLOW, params)
-
-
-
-
-
-
-
