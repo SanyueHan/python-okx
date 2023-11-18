@@ -3,21 +3,20 @@ from .consts import *
 
 
 class CopyTradingAPI(Client):
-    def __init__(self, api_key='-1', api_secret_key='-1', passphrase='-1', use_server_time=False, flag='1',
-                 domain='https://www.okx.com', debug=True):
+    def __init__(self, api_key='-1', api_secret_key='-1', passphrase='-1', use_server_time=False, flag='1', domain='https://www.okx.com', debug=True):
         Client.__init__(self, api_key, api_secret_key, passphrase, use_server_time, flag, domain, debug)
 
     # Get existing leading positions
-    def get_existing_leading_positions(self, instId=''):
+    def get_existing_leading_positions(self, inst_id=''):
         params = {
-            'instId': instId
+            'instId': inst_id
         }
         return self._request_with_params(GET, GET_EXISTING_LEADING_POSITIONS, params)
 
     # Get leading position history
-    def get_leading_position_history(self, instId='', after='', before='', limit=''):
+    def get_leading_position_history(self, inst_id='', after='', before='', limit=''):
         params = {
-            'instId': instId,
+            'instId': inst_id,
             'after': after,
             'before': before,
             'limit': limit
@@ -25,20 +24,20 @@ class CopyTradingAPI(Client):
         return self._request_with_params(GET, GET_LEADING_POSITIONS_HISTORY, params)
 
     # Place leading stop order
-    def place_leading_stop_order(self, subPosId='', tpTriggerPx='', slTriggerPx='', tpTriggerPxType='', slTriggerPxType=''):
+    def place_leading_stop_order(self, sub_pos_id='', tp_trigger_px='', sl_trigger_px='', tp_trigger_px_type='', sl_trigger_px_type=''):
         params = {
-            'subPosId': subPosId,
-            'tpTriggerPx': tpTriggerPx,
-            'slTriggerPx': slTriggerPx,
-            'tpTriggerPxType': tpTriggerPxType,
-            'slTriggerPxType': slTriggerPxType
+            'subPosId': sub_pos_id,
+            'tpTriggerPx': tp_trigger_px,
+            'slTriggerPx': sl_trigger_px,
+            'tpTriggerPxType': tp_trigger_px_type,
+            'slTriggerPxType': sl_trigger_px_type
         }
         return self._request_with_params(POST, PLACE_LEADING_STOP_ORDER, params)
 
     # Close leading position
-    def close_leading_position(self, subPosId=''):
+    def close_leading_position(self, sub_pos_id=''):
         params = {
-            'subPosId': subPosId
+            'subPosId': sub_pos_id
         }
         return self._request_with_params(POST, CLOSE_LEADING_POSITIONS, params)
 
@@ -47,9 +46,9 @@ class CopyTradingAPI(Client):
         return self._request_without_params(GET, GET_LEADING_POSITIONS)
 
     # Amend leading instruments
-    def amend_leading_instruments(self, instId=''):
+    def amend_leading_instruments(self, inst_id=''):
         params = {
-            'instId': instId
+            'instId': inst_id
         }
         return self._request_with_params(POST, AMEND_EXISTING_LEADING_POSITIONS, params)
 
