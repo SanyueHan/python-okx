@@ -3,22 +3,22 @@ from .consts import *
 
 
 class EarningAPI(Client):
-    def __init__(self, api_key='-1', api_secret_key='-1', passphrase='-1', use_server_time=False, flag='1', domain = 'https://www.okx.com',debug = True):
+    def __init__(self, api_key='-1', api_secret_key='-1', passphrase='-1', use_server_time=False, flag='1', domain='https://www.okx.com', debug=True):
         Client.__init__(self, api_key, api_secret_key, passphrase, use_server_time, flag, domain, debug)
 
-    def get_offers(self,productId = '',protocolType = '',ccy = ''):
+    def get_offers(self, product_id='', protocol_type='', ccy=''):
         params = {
-            'productId':productId,
-            'protocolType':protocolType,
-            'ccy':ccy
+            'productId': product_id,
+            'protocolType': protocol_type,
+            'ccy': ccy
         }
-        return self._request_with_params(GET,STACK_DEFI_OFFERS,params)
+        return self._request_with_params(GET, STACK_DEFI_OFFERS, params)
 
-    def purchase(self, productId='', investData=[], term='', tag=''):
+    def purchase(self, product_id='', invest_data=None, term='', tag=''):
 
         params = {
-            'productId': productId,
-            'investData': investData
+            'productId': product_id,
+            'investData': invest_data
         }
         if term != '':
             params['term'] = term
@@ -26,40 +26,40 @@ class EarningAPI(Client):
             params['tag'] = tag
         return self._request_with_params(POST, STACK_DEFI_PURCHASE, params)
 
-    def redeem(self,ordId = '',protocolType = '',allowEarlyRedeem = ''):
+    def redeem(self, ord_id='', protocol_type='', allow_early_redeem=''):
         params = {
-            'ordId':ordId,
-            'protocolType':protocolType,
-            'allowEarlyRedeem':allowEarlyRedeem
+            'ordId': ord_id,
+            'protocolType': protocol_type,
+            'allowEarlyRedeem': allow_early_redeem
         }
-        return self._request_with_params(POST,STACK_DEFI_REDEEM,params)
+        return self._request_with_params(POST, STACK_DEFI_REDEEM, params)
 
-    def cancel(self,ordId = '',protocolType = ''):
+    def cancel(self, ord_id='', protocol_type=''):
         params = {
-            'ordId':ordId,
-            'protocolType':protocolType
+            'ordId': ord_id,
+            'protocolType': protocol_type
         }
-        return self._request_with_params(POST,STACK_DEFI_CANCEL,params)
+        return self._request_with_params(POST, STACK_DEFI_CANCEL, params)
 
-    def get_activity_orders(self,productId = '',protocolType = '',ccy = '',state = ''):
+    def get_activity_orders(self, product_id='', protocol_type='', ccy='', state=''):
         params = {
-            'productId':productId,
-            'protocolType':protocolType,
-            'ccy':ccy,
-            'state':state
+            'productId': product_id,
+            'protocolType': protocol_type,
+            'ccy': ccy,
+            'state': state
         }
-        return self._request_with_params(GET,STACK_DEFI_ORDERS_ACTIVITY,params)
+        return self._request_with_params(GET, STACK_DEFI_ORDERS_ACTIVITY, params)
 
-    def get_orders_history(self,productId = '',protocolType = '',ccy = '',after = '',before = '',limit = ''):
+    def get_orders_history(self, product_id='', protocol_type='', ccy='', after='', before='', limit=''):
         params = {
-            'productId':productId,
-            'protocolType':protocolType,
-            'ccy':ccy,
-            'after':after,
-            'before':before,
-            'limit':limit
+            'productId': product_id,
+            'protocolType': protocol_type,
+            'ccy': ccy,
+            'after': after,
+            'before': before,
+            'limit': limit
         }
-        return self._request_with_params(GET,STACK_DEFI_ORDERS_HISTORY,params)
+        return self._request_with_params(GET, STACK_DEFI_ORDERS_HISTORY, params)
 
     # - Get saving balance
     def get_saving_balance(self, ccy=''):
