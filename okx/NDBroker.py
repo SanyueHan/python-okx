@@ -1,150 +1,149 @@
 from .client import Client
 from .consts import *
-class NDBrokerAPI(Client):
-    def __init__(self, api_key='-1', api_secret_key='-1', passphrase='-1', use_server_time=False, flag='1', domain = 'https://www.okx.com',debug = True):
-        Client.__init__(self, api_key, api_secret_key, passphrase, use_server_time, flag, domain,debug)
 
-    #GET /api/v5/broker/nd/info
+
+class NDBrokerAPI(Client):
+    def __init__(self, api_key='-1', api_secret_key='-1', passphrase='-1', use_server_time=False, flag='1', domain='https://www.okx.com', debug=True):
+        Client.__init__(self, api_key, api_secret_key, passphrase, use_server_time, flag, domain, debug)
+
+    # GET /api/v5/broker/nd/info
     def get_broker_info(self):
         return self._request_without_params(GET, BROKER_INFO)
 
-    #POST /api/v5/broker/nd/create-subaccount
-    def create_subaccount(self,subAcct = '',label = ''):
+    # POST /api/v5/broker/nd/create-subaccount
+    def create_subaccount(self, sub_acct='', label=''):
         params = {
-            'subAcct':subAcct,
-            'label':label
+            'subAcct': sub_acct,
+            'label': label
         }
-        return self._request_with_params(POST,CREATE_SUBACCOUNT,params)
+        return self._request_with_params(POST, CREATE_SUBACCOUNT, params)
 
-    def delete_subaccount(self,subAcct = ''):
+    def delete_subaccount(self, sub_acct=''):
         params = {
-            'subAcct':subAcct
+            'subAcct': sub_acct
         }
-        return self._request_with_params(POST,DELETE_SUBACCOUNT,params)
+        return self._request_with_params(POST, DELETE_SUBACCOUNT, params)
 
-    def get_subaccount_info(self,subAcct = '',page = '',limit = ''):
+    def get_subaccount_info(self, sub_acct='', page='', limit=''):
         params = {
-            'subAcct':subAcct,
-            'page':page,
-            'limit':limit
+            'subAcct': sub_acct,
+            'page': page,
+            'limit': limit
         }
-        return self._request_with_params(GET,SUBACCOUNT_INFO,params)
+        return self._request_with_params(GET, SUBACCOUNT_INFO, params)
 
-    def create_subaccount_apikey(self,subAcct = '',label='',passphrase='',ip='',perm=''):
+    def create_subaccount_apikey(self, sub_acct='', label='', passphrase='', ip='', perm=''):
         params = {
-            'subAcct':subAcct,
-            'label':label,
-            'passphrase':passphrase,
-            'ip':ip,
-            'perm':perm
+            'subAcct': sub_acct,
+            'label': label,
+            'passphrase': passphrase,
+            'ip': ip,
+            'perm': perm
         }
-        return self._request_with_params(POST,ND_CREAET_APIKEY,params)
+        return self._request_with_params(POST, ND_CREAET_APIKEY, params)
 
-    def get_subaccount_apikey(self,subAcct = '',apiKey = ''):
+    def get_subaccount_apikey(self, sub_acct='', api_key=''):
         params = {
-            'subAcct':subAcct,
-            'apiKey':apiKey
+            'subAcct': sub_acct,
+            'apiKey': api_key
         }
-        return self._request_with_params(GET,ND_SELECT_APIKEY,params)
+        return self._request_with_params(GET, ND_SELECT_APIKEY, params)
 
-    def reset_subaccount_apikey(self,subAcct = '',apiKey = '',label='',perm = '',ip = ''):
+    def reset_subaccount_apikey(self, sub_acct='', api_key='', label='', perm='', ip=''):
         params = {
-            'subAcct':subAcct,
-            'apiKey':apiKey,
-            'label':label,
-            'perm':perm,
-            'ip':ip
+            'subAcct': sub_acct,
+            'apiKey': api_key,
+            'label': label,
+            'perm': perm,
+            'ip': ip
         }
-        return self._request_with_params(POST,ND_MODIFY_APIKEY,params)
+        return self._request_with_params(POST, ND_MODIFY_APIKEY, params)
 
-    def delete_subaccount_apikey(self,subAcct = '',apiKey = ''):
+    def delete_subaccount_apikey(self, sub_acct='', api_key=''):
         params = {
-            'subAcct':subAcct,
-            'apiKey':apiKey
+            'subAcct': sub_acct,
+            'apiKey': api_key
         }
-        return self._request_with_params(POST,ND_DELETE_APIKEY,params)
+        return self._request_with_params(POST, ND_DELETE_APIKEY, params)
 
-    def set_subaccount_level(self,subAcct = '',acctLv = ''):
+    def set_subaccount_level(self, sub_acct='', acct_lv=''):
         params = {
-            'subAcct':subAcct,
-            'acctLv':acctLv
+            'subAcct': sub_acct,
+            'acctLv': acct_lv
         }
-        return self._request_with_params(POST,SET_SUBACCOUNT_LEVEL,params)
+        return self._request_with_params(POST, SET_SUBACCOUNT_LEVEL, params)
 
-    def set_subaccount_fee_rate(self,subAcct = '',instType = '',chgType = '',chgTaker = '',chgMaker = '',effDate = ''):
+    def set_subaccount_fee_rate(self, sub_acct='', inst_type='', chg_type='', chg_taker='', chg_maker='', eff_date=''):
         params = {
-            'subAcct':subAcct,
-            'instType':instType,
-            'chgType':chgType,
-            'chgTaker':chgTaker,
-            'chgMaker':chgMaker,
-            'effDate':effDate
+            'subAcct': sub_acct,
+            'instType': inst_type,
+            'chgType': chg_type,
+            'chgTaker': chg_taker,
+            'chgMaker': chg_maker,
+            'effDate': eff_date
         }
-        return self._request_with_params(POST,SET_SUBACCOUNT_FEE_REAT,params)
+        return self._request_with_params(POST, SET_SUBACCOUNT_FEE_REAT, params)
 
-    def create_subaccount_deposit_address(self,subAcct = '',ccy = '',chain = '',addrType = '', to =''):
+    def create_subaccount_deposit_address(self, sub_acct='', ccy='', chain='', addr_type='', to=''):
         params = {
-            'subAcct':subAcct,
-            'ccy':ccy,
-            'chain':chain,
-            'addrType':addrType,
-            'to':to
+            'subAcct': sub_acct,
+            'ccy': ccy,
+            'chain': chain,
+            'addrType': addr_type,
+            'to': to
         }
-        return self._request_with_params(POST,SUBACCOUNT_DEPOSIT_ADDRESS,params)
+        return self._request_with_params(POST, SUBACCOUNT_DEPOSIT_ADDRESS, params)
 
-    def reset_subaccount_deposit_address(self,subAcct = '',ccy = '',chain = '',addr = '',to = ''):
+    def reset_subaccount_deposit_address(self, sub_acct='', ccy='', chain='', addr='', to=''):
         params = {
-            'subAcct':subAcct,
-            'ccy':ccy,
-            'chain':chain,
-            'addr':addr,
-            'to':to
+            'subAcct': sub_acct,
+            'ccy': ccy,
+            'chain': chain,
+            'addr': addr,
+            'to': to
         }
-        return self._request_with_params(POST,MODIFY_SUBACCOUNT_DEPOSIT_ADDRESS,params)
+        return self._request_with_params(POST, MODIFY_SUBACCOUNT_DEPOSIT_ADDRESS, params)
 
-    def get_subaccount_deposit_address(self,subAcct = '',ccy = ''):
+    def get_subaccount_deposit_address(self, sub_acct='', ccy=''):
         params = {
-            'subAcct':subAcct,
-            'ccy':ccy
+            'subAcct': sub_acct,
+            'ccy': ccy
         }
-        return self._request_with_params(GET,GET_SUBACCOUNT_DEPOSIT,params)
+        return self._request_with_params(GET, GET_SUBACCOUNT_DEPOSIT, params)
 
-    def get_subaccount_deposit_history(self,subAcct = '',ccy = '',txId = '',state = '',after = '',before = '',limit = ''):
+    def get_subaccount_deposit_history(self, sub_acct='', ccy='', tx_id='', state='', after='', before='', limit=''):
         params = {
-            'subAcct':subAcct,
-            'ccy':ccy,
-            'txId':txId,
-            'state':state,
-            'after':after,
-            'before':before,
-            'limit':limit
+            'subAcct': sub_acct,
+            'ccy': ccy,
+            'txId': tx_id,
+            'state': state,
+            'after': after,
+            'before': before,
+            'limit': limit
         }
-        return self._request_with_params(GET,SUBACCOUNT_DEPOSIT_HISTORY,params)
+        return self._request_with_params(GET, SUBACCOUNT_DEPOSIT_HISTORY, params)
 
-    def get_rebate_daily(self,subAcct = '',begin = '',end = '',page = '',limit = ''):
+    def get_rebate_daily(self, sub_acct='', begin='', end='', page='', limit=''):
         params = {
-            'subAcct':subAcct,
-            'begin':begin,
-            'end':end,
-            'page':page,
-            'limit':limit
+            'subAcct': sub_acct,
+            'begin': begin,
+            'end': end,
+            'page': page,
+            'limit': limit
         }
-        return self._request_with_params(GET,REBATE_DAILY,params)
+        return self._request_with_params(GET, REBATE_DAILY, params)
 
-    def get_rebate_details_download_link(self,type ='',begin = '',end = ''):
-        params ={
-            'type':type,
-            'begin':begin,
-            'end':end
-        }
-        return self._request_with_params(GET,GET_REBATE_PER_ORDERS,params)
-
-
-
-    def generate_rebate_details_download_link(self,begin = '',end = ''):
+    def get_rebate_details_download_link(self, type_='', begin='', end=''):
         params = {
-            'begin':begin,
-            'end':end
+            'type': type_,
+            'begin': begin,
+            'end': end
         }
-        return self._request_with_params(POST,REBATE_PER_ORDERS,params)
+        return self._request_with_params(GET, GET_REBATE_PER_ORDERS, params)
 
+    def generate_rebate_details_download_link(self, begin='', end=''):
+        params = {
+            'begin': begin,
+            'end': end
+        }
+        return self._request_with_params(POST, REBATE_PER_ORDERS, params)
