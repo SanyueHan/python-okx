@@ -180,7 +180,7 @@ class TradeTest(unittest.TestCase):
     #                                          tpTriggerPx='15', tpOrdPx='18', sz='2',algoClOrdId='7678687',quickMgnType='manual'))
 
     def test_order_algos_list(self):
-        print(self.tradeApi.order_algos_list(ordType='conditional'))
+        print(self.tradeApi.order_algos_list(ord_type='conditional'))
 
     # def test_order_algo(self):
     #     print(self.tradeApi.place_order(instId='BTC-USDT-SWAP', tdMode='cross', side='buy',px='121',sz='2',
