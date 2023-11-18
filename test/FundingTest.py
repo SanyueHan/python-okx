@@ -67,7 +67,7 @@ class FundingTest(unittest.TestCase):
     #     print(self.FundingAPI.get_non_tradable_assets())
 
     def test_get_deposit_withdraw_status(self):
-        print(self.FundingAPI.get_deposit_withdraw_status(wdId='84804812'))
+        print(self.FundingAPI.get_deposit_withdraw_status(wd_id='84804812'))
 
     # def test_get_withdrawal_history(self):
     #     print(self.FundingAPI.get_withdrawal_history())

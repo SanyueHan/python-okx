@@ -67,7 +67,6 @@ BILLS_INFO = '/api/v5/asset/bills'
 DEPOSIT_LIGHTNING = '/api/v5/asset/deposit-lightning'
 WITHDRAWAL_LIGHTNING = '/api/v5/asset/withdrawal-lightning'
 CANCEL_WITHDRAWAL = '/api/v5/asset/cancel-withdrawal' #need add
-WITHDRAWAL_HISTORIY = '/api/v5/asset/withdrawal-history'
 CONVERT_DUST_ASSETS = '/api/v5/asset/convert-dust-assets' #need add
 ASSET_VALUATION = '/api/v5/asset/asset-valuation' #need add
 SET_LENDING_RATE = '/api/v5/asset/set-lending-rate'
