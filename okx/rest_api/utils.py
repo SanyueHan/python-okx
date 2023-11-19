@@ -1,7 +1,7 @@
 import hmac
 import base64
 import datetime
-from . import consts as c
+from okx.rest_api import consts as c
 
 
 def sign(message, secret_key):

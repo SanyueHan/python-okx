@@ -2,7 +2,7 @@ import json
 
 import httpx
 
-from . import consts as c, utils
+from okx.rest_api import utils, consts as c
 
 
 class Client(object):
