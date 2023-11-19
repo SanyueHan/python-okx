@@ -58,7 +58,7 @@ class BlockTradingTest(unittest.TestCase):
             'tdMode':'cross',
             'ccy':'USDT'
         }]
-        print(self.BlockTradingAPI.create_rfq(counterparties,allowPartialExecution='true',tag='1234',legs = legs))
+        print(self.BlockTradingAPI.create_rfq(counterparties, allow_partial_execution='true', tag='1234', legs = legs))
 
     # def test_execute_quotes(self):
     #     legs = [{
