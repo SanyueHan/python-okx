@@ -103,6 +103,6 @@ class AccountTest(unittest.TestCase):
     #     print(self.AccountAPI.borrow_repay("BTC", "borrow", "1.0"))
 
     def test_simulated_margin(self):
-        print(self.AccountAPI.get_simulated_margin(spotOffsetType='3'))
+        print(self.AccountAPI.get_simulated_margin(spot_offset_type='3'))
 if __name__ == '__main__':
     unittest.main()
