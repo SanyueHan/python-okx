@@ -16,12 +16,12 @@ class SpreadTradingAPI(Client):
     # Cancel Order
     def cancel_order(self, ord_id='', cl_ord_id=''):
         params = {'ordId': ord_id, 'clOrdId': cl_ord_id}
-        return self._request_with_params(POST, SPREAD_CANAEL_ORDER, params)
+        return self._request_with_params(POST, SPREAD_CANCEL_ORDER, params)
 
     # Cancel All orders
     def cancel_all_orders(self, sprd_id=''):
         params = {'sprdId': sprd_id}
-        return self._request_with_params(POST, SPREAD_CANAEL_ALL_ORDERS, params)
+        return self._request_with_params(POST, SPREAD_CANCEL_ALL_ORDERS, params)
 
     # Get order details
     def get_order_details(self, ord_id='', cl_ord_id=''):

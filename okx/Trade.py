@@ -16,7 +16,7 @@ class TradeAPI(Client):
                   'tgtCcy': tgt_ccy, 'tpTriggerPx': tp_trigger_px, 'tpOrdPx': tp_ord_px, 'slTriggerPx': sl_trigger_px,
                   'slOrdPx': sl_ord_px, 'tpTriggerPxType': tp_trigger_px_type, 'slTriggerPxType': sl_trigger_px_type,
                   'quickMgnType': quick_mgn_type, 'stpId': stp_id, 'stpMode': stp_mode}
-        return self._request_with_params(POST, PLACR_ORDER, params)
+        return self._request_with_params(POST, PLACE_ORDER, params)
 
     # Place Multiple Orders
     def place_multiple_orders(self, orders_data):
@@ -25,11 +25,11 @@ class TradeAPI(Client):
     # Cancel Order
     def cancel_order(self, inst_id, ord_id='', cl_ord_id=''):
         params = {'instId': inst_id, 'ordId': ord_id, 'clOrdId': cl_ord_id}
-        return self._request_with_params(POST, CANAEL_ORDER, params)
+        return self._request_with_params(POST, CANCEL_ORDER, params)
 
     # Cancel Multiple Orders
     def cancel_multiple_orders(self, orders_data):
-        return self._request_with_params(POST, CANAEL_BATCH_ORDERS, orders_data)
+        return self._request_with_params(POST, CANCEL_BATCH_ORDERS, orders_data)
 
     # Amend Order
     def amend_order(self, inst_id, cxl_on_fail='', ord_id='', cl_ord_id='', req_id='', new_sz='', new_px='', new_tp_trigger_px='',
@@ -114,7 +114,7 @@ class TradeAPI(Client):
     def order_algos_list(self, ord_type='', algo_id='', inst_type='', inst_id='', after='', before='', limit='', algo_cl_ord_id=''):
         params = {'ordType': ord_type, 'algoId': algo_id, 'instType': inst_type, 'instId': inst_id, 'after': after,
                   'before': before, 'limit': limit, 'algoClOrdId': algo_cl_ord_id}
-        return self._request_with_params(GET, ORDERS_ALGO_OENDING, params)
+        return self._request_with_params(GET, ORDERS_ALGO_PENDING, params)
 
     # Get Algo Order History
     def order_algos_history(self, ord_type, state='', algo_id='', inst_type='', inst_id='', after='', before='', limit=''):

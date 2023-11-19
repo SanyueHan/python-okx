@@ -57,7 +57,7 @@ class GridAPI(Client):
             'type': type_,
             'amt': amt
         }
-        return self._request_with_params(POST, GRID_COMPUTE_MARIGIN_BALANCE, params)
+        return self._request_with_params(POST, GRID_COMPUTE_MARGIN_BALANCE, params)
 
     def grid_adjust_margin_balance(self, algo_id='', type_='', amt='', percent=''):
         params = {

@@ -40,7 +40,7 @@ class NDBrokerAPI(Client):
             'ip': ip,
             'perm': perm
         }
-        return self._request_with_params(POST, ND_CREAET_APIKEY, params)
+        return self._request_with_params(POST, ND_CREATE_APIKEY, params)
 
     def get_subaccount_apikey(self, sub_acct='', api_key=''):
         params = {
@@ -82,7 +82,7 @@ class NDBrokerAPI(Client):
             'chgMaker': chg_maker,
             'effDate': eff_date
         }
-        return self._request_with_params(POST, SET_SUBACCOUNT_FEE_REAT, params)
+        return self._request_with_params(POST, SET_SUBACCOUNT_FEE_RATE, params)
 
     def create_subaccount_deposit_address(self, sub_acct='', ccy='', chain='', addr_type='', to=''):
         params = {

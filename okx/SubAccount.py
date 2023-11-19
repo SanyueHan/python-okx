@@ -47,7 +47,7 @@ class SubAccountAPI(Client):
             'subAcct': sub_acct,
             'canTransOut': can_trans_out
         }
-        return self._request_with_params(POST, SET_TRSNSFER_OUT, params)
+        return self._request_with_params(POST, SET_TRANSFER_OUT, params)
 
     # GET /api/v5/asset/subaccount/balances
     def get_funding_balance(self, sub_acct='', ccy=''):

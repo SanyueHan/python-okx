@@ -25,7 +25,7 @@ class BlockTradingAPI(Client):
 
     def cancel_all_rfqs(self):
         params = {}
-        return self._request_with_params(POST, CANCEL_ALL_RSQS, params)
+        return self._request_with_params(POST, CANCEL_ALL_RFQS, params)
 
     def execute_quote(self, rfq_id='', quote_id='', legs=None):
         params = {'rfqId': rfq_id, 'quoteId': quote_id, 'legs': legs}

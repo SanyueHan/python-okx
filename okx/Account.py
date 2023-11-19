@@ -194,4 +194,4 @@ class AccountAPI(Client):
 
     # - Activate option
     def activate_option(self):
-        return self._request_without_params(POST, ACTIVSTE_OPTION)
+        return self._request_without_params(POST, ACTIVATE_OPTION)
