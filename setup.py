@@ -3,7 +3,7 @@ import okx
 
 
 setuptools.setup(
-    name="python-okx-hsy",
+    name="okx",
     version=okx.__version__,
     author="Han Sanyue",
     author_email="hansanyue@hotmail.com",
