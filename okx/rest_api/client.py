@@ -19,11 +19,9 @@ class Client(object):
     def _request(self, method, request_path, params):
         if method == c.GET:
             request_path = request_path + utils.parse_params_to_str(params)
-        timestamp = utils.get_timestamp()
-        if self.use_server_time:
-            timestamp = self._get_timestamp()
         body = json.dumps(params) if method == c.POST else ""
         if self.API_KEY != '-1':
+            timestamp = self._get_timestamp()
             sign = utils.sign(utils.pre_hash(timestamp, method, request_path, str(body)), self.API_SECRET_KEY)
             header = utils.get_header(self.API_KEY, sign, timestamp, self.PASSPHRASE, self.flag)
         else:
@@ -42,6 +40,12 @@ class Client(object):
         return self._request(method, request_path, params)
 
     def _get_timestamp(self):
+        if self.use_server_time:
+            return self._request_timestamp()
+        else:
+            return utils.get_timestamp()
+
+    def _request_timestamp(self):
         request_path = c.API_URL + c.SERVER_TIMESTAMP_URL
         response = self.client.get(request_path)
         if response.status_code == 200:
