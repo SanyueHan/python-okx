@@ -16,8 +16,8 @@ class Client(object):
         self.domain = base_api
         self.client = httpx.Client(base_url=base_api, http2=True)
 
-    def _request(self, method, request_path, params):
-        if method == c.GET:
+    def _request(self, method, request_path, params: dict = None):
+        if method == c.GET and params:
             request_path = request_path + utils.parse_params_to_str(params)
         body = json.dumps(params) if method == c.POST else ""
         if self.API_KEY != '-1':
