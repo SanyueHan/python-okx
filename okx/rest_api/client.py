@@ -33,12 +33,6 @@ class Client(object):
             response = self.client.post(request_path, data=body, headers=header)
         return response.json()
 
-    def _request_without_params(self, method, request_path):
-        return self._request(method, request_path, {})
-
-    def _request_with_params(self, method, request_path, params):
-        return self._request(method, request_path, params)
-
     def _get_timestamp(self):
         if self.use_server_time:
             return self._request_timestamp()

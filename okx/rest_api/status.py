@@ -8,4 +8,4 @@ class StatusAPI(Client):
 
     def status(self, state=''):
         params = {'state': state}
-        return self._request_with_params(GET, STATUS, params)
+        return self._request(GET, STATUS, params)
