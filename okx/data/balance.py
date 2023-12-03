@@ -25,6 +25,10 @@ class Balance:
         return balance
 
     @property
+    def currency(self) -> Currency:
+        return self._ccy
+
+    @property
     def available_balance(self):
         return self._available_balance
 
