@@ -8,7 +8,7 @@ class NDBrokerAPI(Client):
 
     # GET /api/v5/broker/nd/info
     def get_broker_info(self):
-        return self._request(GET, BROKER_INFO)
+        return self._get(BROKER_INFO)
 
     # POST /api/v5/broker/nd/create-subaccount
     def create_subaccount(self, sub_acct='', label=''):
@@ -16,13 +16,13 @@ class NDBrokerAPI(Client):
             'subAcct': sub_acct,
             'label': label
         }
-        return self._request(POST, CREATE_SUBACCOUNT, params)
+        return self._post(CREATE_SUBACCOUNT, params)
 
     def delete_subaccount(self, sub_acct=''):
         params = {
             'subAcct': sub_acct
         }
-        return self._request(POST, DELETE_SUBACCOUNT, params)
+        return self._post(DELETE_SUBACCOUNT, params)
 
     def get_subaccount_info(self, sub_acct='', page='', limit=''):
         params = {
@@ -30,7 +30,7 @@ class NDBrokerAPI(Client):
             'page': page,
             'limit': limit
         }
-        return self._request(GET, SUBACCOUNT_INFO, params)
+        return self._get(SUBACCOUNT_INFO, params)
 
     def create_subaccount_apikey(self, sub_acct='', label='', passphrase='', ip='', perm=''):
         params = {
@@ -40,14 +40,14 @@ class NDBrokerAPI(Client):
             'ip': ip,
             'perm': perm
         }
-        return self._request(POST, ND_CREATE_APIKEY, params)
+        return self._post(ND_CREATE_APIKEY, params)
 
     def get_subaccount_apikey(self, sub_acct='', api_key=''):
         params = {
             'subAcct': sub_acct,
             'apiKey': api_key
         }
-        return self._request(GET, ND_SELECT_APIKEY, params)
+        return self._get(ND_SELECT_APIKEY, params)
 
     def reset_subaccount_apikey(self, sub_acct='', api_key='', label='', perm='', ip=''):
         params = {
@@ -57,21 +57,21 @@ class NDBrokerAPI(Client):
             'perm': perm,
             'ip': ip
         }
-        return self._request(POST, ND_MODIFY_APIKEY, params)
+        return self._post(ND_MODIFY_APIKEY, params)
 
     def delete_subaccount_apikey(self, sub_acct='', api_key=''):
         params = {
             'subAcct': sub_acct,
             'apiKey': api_key
         }
-        return self._request(POST, ND_DELETE_APIKEY, params)
+        return self._post(ND_DELETE_APIKEY, params)
 
     def set_subaccount_level(self, sub_acct='', acct_lv=''):
         params = {
             'subAcct': sub_acct,
             'acctLv': acct_lv
         }
-        return self._request(POST, SET_SUBACCOUNT_LEVEL, params)
+        return self._post(SET_SUBACCOUNT_LEVEL, params)
 
     def set_subaccount_fee_rate(self, sub_acct='', inst_type='', chg_type='', chg_taker='', chg_maker='', eff_date=''):
         params = {
@@ -82,7 +82,7 @@ class NDBrokerAPI(Client):
             'chgMaker': chg_maker,
             'effDate': eff_date
         }
-        return self._request(POST, SET_SUBACCOUNT_FEE_RATE, params)
+        return self._post(SET_SUBACCOUNT_FEE_RATE, params)
 
     def create_subaccount_deposit_address(self, sub_acct='', ccy='', chain='', addr_type='', to=''):
         params = {
@@ -92,7 +92,7 @@ class NDBrokerAPI(Client):
             'addrType': addr_type,
             'to': to
         }
-        return self._request(POST, SUBACCOUNT_DEPOSIT_ADDRESS, params)
+        return self._post(SUBACCOUNT_DEPOSIT_ADDRESS, params)
 
     def reset_subaccount_deposit_address(self, sub_acct='', ccy='', chain='', addr='', to=''):
         params = {
@@ -102,14 +102,14 @@ class NDBrokerAPI(Client):
             'addr': addr,
             'to': to
         }
-        return self._request(POST, MODIFY_SUBACCOUNT_DEPOSIT_ADDRESS, params)
+        return self._post(MODIFY_SUBACCOUNT_DEPOSIT_ADDRESS, params)
 
     def get_subaccount_deposit_address(self, sub_acct='', ccy=''):
         params = {
             'subAcct': sub_acct,
             'ccy': ccy
         }
-        return self._request(GET, GET_SUBACCOUNT_DEPOSIT, params)
+        return self._get(GET_SUBACCOUNT_DEPOSIT, params)
 
     def get_subaccount_deposit_history(self, sub_acct='', ccy='', tx_id='', state='', after='', before='', limit=''):
         params = {
@@ -121,7 +121,7 @@ class NDBrokerAPI(Client):
             'before': before,
             'limit': limit
         }
-        return self._request(GET, SUBACCOUNT_DEPOSIT_HISTORY, params)
+        return self._get(SUBACCOUNT_DEPOSIT_HISTORY, params)
 
     def get_rebate_daily(self, sub_acct='', begin='', end='', page='', limit=''):
         params = {
@@ -131,7 +131,7 @@ class NDBrokerAPI(Client):
             'page': page,
             'limit': limit
         }
-        return self._request(GET, REBATE_DAILY, params)
+        return self._get(REBATE_DAILY, params)
 
     def get_rebate_details_download_link(self, type_='', begin='', end=''):
         params = {
@@ -139,11 +139,11 @@ class NDBrokerAPI(Client):
             'begin': begin,
             'end': end
         }
-        return self._request(GET, GET_REBATE_PER_ORDERS, params)
+        return self._get(GET_REBATE_PER_ORDERS, params)
 
     def generate_rebate_details_download_link(self, begin='', end=''):
         params = {
             'begin': begin,
             'end': end
         }
-        return self._request(POST, REBATE_PER_ORDERS, params)
+        return self._post(REBATE_PER_ORDERS, params)

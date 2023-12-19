@@ -12,7 +12,7 @@ class EarningAPI(Client):
             'protocolType': protocol_type,
             'ccy': ccy
         }
-        return self._request(GET, STACK_DEFI_OFFERS, params)
+        return self._get(STACK_DEFI_OFFERS, params)
 
     def purchase(self, product_id='', invest_data=None, term='', tag=''):
 
@@ -24,7 +24,7 @@ class EarningAPI(Client):
             params['term'] = term
         if tag != '':
             params['tag'] = tag
-        return self._request(POST, STACK_DEFI_PURCHASE, params)
+        return self._post(STACK_DEFI_PURCHASE, params)
 
     def redeem(self, ord_id='', protocol_type='', allow_early_redeem=''):
         params = {
@@ -32,14 +32,14 @@ class EarningAPI(Client):
             'protocolType': protocol_type,
             'allowEarlyRedeem': allow_early_redeem
         }
-        return self._request(POST, STACK_DEFI_REDEEM, params)
+        return self._post(STACK_DEFI_REDEEM, params)
 
     def cancel(self, ord_id='', protocol_type=''):
         params = {
             'ordId': ord_id,
             'protocolType': protocol_type
         }
-        return self._request(POST, STACK_DEFI_CANCEL, params)
+        return self._post(STACK_DEFI_CANCEL, params)
 
     def get_activity_orders(self, product_id='', protocol_type='', ccy='', state=''):
         params = {
@@ -48,7 +48,7 @@ class EarningAPI(Client):
             'ccy': ccy,
             'state': state
         }
-        return self._request(GET, STACK_DEFI_ORDERS_ACTIVITY, params)
+        return self._get(STACK_DEFI_ORDERS_ACTIVITY, params)
 
     def get_orders_history(self, product_id='', protocol_type='', ccy='', after='', before='', limit=''):
         params = {
@@ -59,14 +59,14 @@ class EarningAPI(Client):
             'before': before,
             'limit': limit
         }
-        return self._request(GET, STACK_DEFI_ORDERS_HISTORY, params)
+        return self._get(STACK_DEFI_ORDERS_HISTORY, params)
 
     # - Get saving balance
     def get_saving_balance(self, ccy=''):
         params = {
             'ccy': ccy
         }
-        return self._request(GET, GET_SAVING_BALANCE, params)
+        return self._get(GET_SAVING_BALANCE, params)
 
     # - Savings purchase/redemption
     def savings_purchase_redemption(self, ccy='', amt='', side='', rate=''):
@@ -77,7 +77,7 @@ class EarningAPI(Client):
             'side': side,
             'rate': rate
         }
-        return self._request(POST, SAVING_PURCHASE_REDEMPTION, params)
+        return self._post(SAVING_PURCHASE_REDEMPTION, params)
 
     # - Set lending rate
     def set_lending_rate(self, ccy='', rate=''):
@@ -85,7 +85,7 @@ class EarningAPI(Client):
             'ccy': ccy,
             'rate': rate
         }
-        return self._request(POST, SET_LENDING_RATE, params)
+        return self._post(SET_LENDING_RATE, params)
 
     # - Get lending history
     def get_lending_history(self, ccy='', after='', before='', limit=''):
@@ -95,14 +95,14 @@ class EarningAPI(Client):
             'before': before,
             'limit': limit
         }
-        return self._request(GET, GET_LENDING_HISTORY, params)
+        return self._get(GET_LENDING_HISTORY, params)
 
     # - Get public borrow info (public)
     def get_public_borrow_info(self, ccy=''):
         params = {
             'ccy': ccy
         }
-        return self._request(GET, GET_PUBLIC_BORROW_INFO, params)
+        return self._get(GET_PUBLIC_BORROW_INFO, params)
 
     # - Get public borrow history (public)
     def get_public_borrow_history(self, ccy='', after='', before='', limit=''):
@@ -112,4 +112,4 @@ class EarningAPI(Client):
             'before': before,
             'limit': limit
         }
-        return self._request(GET, GET_PUBLIC_BORROW_HISTORY, params)
+        return self._get(GET_PUBLIC_BORROW_HISTORY, params)

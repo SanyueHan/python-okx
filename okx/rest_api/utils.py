@@ -33,7 +33,10 @@ def get_header_no_sign(flag):
 
 
 def parse_params_to_str(params):
-    return '?' + '&'.join(f"{key}={value}" for key, value in params.items())
+    if params:
+        return '?' + '&'.join(f"{key}={value}" for key, value in params.items())
+    else:
+        return ''
 
 
 def get_timestamp():

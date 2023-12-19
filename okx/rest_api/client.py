@@ -5,7 +5,7 @@ import httpx
 from okx.rest_api import utils, consts as c
 
 
-class Client(object):
+class Client:
 
     def __init__(self, api_key='-1', api_secret_key='-1', passphrase='-1', use_server_time=False, flag='1', base_api=c.API_URL):
         self.API_KEY = api_key
@@ -13,20 +13,16 @@ class Client(object):
         self.PASSPHRASE = passphrase
         self.use_server_time = use_server_time
         self.flag = flag
-        self.domain = base_api
         self.client = httpx.Client(base_url=base_api, http2=True)
 
-    def _request(self, method, request_path, params: dict = None):
-        if method == c.GET and params:
-            request_path = request_path + utils.parse_params_to_str(params)
-        body = json.dumps(params) if method == c.POST else ""
-        header = self._get_header(method, request_path, body)
-        response = None
-        if method == c.GET:
-            response = self.client.get(request_path, headers=header)
-        elif method == c.POST:
-            response = self.client.post(request_path, data=body, headers=header)
-        return response.json()
+    def _get(self, request_path, params: dict = None):
+        return self.client.get(request_path + utils.parse_params_to_str(params),
+                               headers=self._get_header(c.GET, request_path, "")).json()
+
+    def _post(self, request_path, params: dict = None):
+        return self.client.post(request_path,
+                                json=params,
+                                headers=self._get_header(c.POST, request_path, json.dumps(params))).json()
 
     def _get_header(self, method, request_path, body):
         if self.API_KEY != '-1':

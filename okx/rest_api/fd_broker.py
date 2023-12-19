@@ -8,8 +8,8 @@ class FDBrokerAPI(Client):
 
     def generate_rebate_details_download_link(self, begin='', end=''):
         params = {'begin': begin, 'end': end}
-        return self._request(POST, FD_REBATE_PER_ORDERS, params)
+        return self._post(FD_REBATE_PER_ORDERS, params)
 
     def get_rebate_details_download_link(self, type_='', begin='', end=''):
         params = {'type': type_, 'begin': begin, 'end': end}
-        return self._request(GET, FD_GET_REBATE_PER_ORDERS, params)
+        return self._get(FD_GET_REBATE_PER_ORDERS, params)

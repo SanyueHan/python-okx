@@ -8,20 +8,20 @@ class ConvertAPI(Client):
 
     def get_currencies(self):
         params = {}
-        return self._request(GET, GET_CURRENCIES, params)
+        return self._get(GET_CURRENCIES, params)
 
     def get_currency_pair(self, from_ccy='', to_ccy=''):
         params = {"fromCcy": from_ccy, 'toCcy': to_ccy}
-        return self._request(GET, GET_CURRENCY_PAIR, params)
+        return self._get(GET_CURRENCY_PAIR, params)
 
     def estimate_quote(self, base_ccy='', quote_ccy='', side='', rfq_sz='', rfq_sz_ccy='', cl_q_req_id='', tag=''):
         params = {'baseCcy': base_ccy, 'quoteCcy': quote_ccy, 'side': side, 'rfqSz': rfq_sz, 'rfqSzCcy': rfq_sz_ccy, 'clQReqId': cl_q_req_id, 'tag': tag}
-        return self._request(POST, ESTIMATE_QUOTE, params)
+        return self._post(ESTIMATE_QUOTE, params)
 
     def convert_trade(self, quote_id='', base_ccy='', quote_ccy='', side='', sz='', sz_ccy='', cl_t_req_id='', tag=''):
         params = {'quoteId': quote_id, 'baseCcy': base_ccy, 'quoteCcy': quote_ccy, 'side': side, 'sz': sz, 'szCcy': sz_ccy, 'clTReqId': cl_t_req_id, 'tag': tag}
-        return self._request(POST, CONVERT_TRADE, params)
+        return self._post(CONVERT_TRADE, params)
 
     def get_convert_history(self, after='', before='', limit='', tag=''):
         params = {'after': after, 'before': before, 'limit': limit, 'tag': tag}
-        return self._request(GET, CONVERT_HISTORY, params)
+        return self._get(CONVERT_HISTORY, params)
