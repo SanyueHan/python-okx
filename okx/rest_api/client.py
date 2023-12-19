@@ -20,18 +20,21 @@ class Client(object):
         if method == c.GET and params:
             request_path = request_path + utils.parse_params_to_str(params)
         body = json.dumps(params) if method == c.POST else ""
-        if self.API_KEY != '-1':
-            timestamp = self._get_timestamp()
-            sign = utils.sign(utils.pre_hash(timestamp, method, request_path, str(body)), self.API_SECRET_KEY)
-            header = utils.get_header(self.API_KEY, sign, timestamp, self.PASSPHRASE, self.flag)
-        else:
-            header = utils.get_header_no_sign(self.flag)
+        header = self._get_header(method, request_path, body)
         response = None
         if method == c.GET:
             response = self.client.get(request_path, headers=header)
         elif method == c.POST:
             response = self.client.post(request_path, data=body, headers=header)
         return response.json()
+
+    def _get_header(self, method, request_path, body):
+        if self.API_KEY != '-1':
+            timestamp = self._get_timestamp()
+            sign = utils.sign(utils.pre_hash(timestamp, method, request_path, body), self.API_SECRET_KEY)
+            return utils.get_header(self.API_KEY, sign, timestamp, self.PASSPHRASE, self.flag)
+        else:
+            return utils.get_header_no_sign(self.flag)
 
     def _get_timestamp(self):
         if self.use_server_time:
