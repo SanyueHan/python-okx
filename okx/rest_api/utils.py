@@ -1,7 +1,11 @@
 import hmac
 import base64
 import datetime
+import functools
+import httpx
+
 from okx.rest_api import consts as c
+from okx.rest_api.errors import *
 
 
 def sign(message, secret_key):
@@ -43,3 +47,16 @@ def get_timestamp():
     now = datetime.datetime.utcnow()
     t = now.isoformat("T", "milliseconds")
     return t + "Z"
+
+
+def unify_error(func):
+    @functools.wraps(func)
+    def decorator(*args, **kwargs):
+        try:
+            response = func(*args, **kwargs)
+        except httpx.HTTPError as e:
+            raise OkxRequestException() from e
+        if response['code'] != '0':
+            raise OkxResponseException(f"code={response.get('code')}, 'msg={response.get('msg')}")
+        return response
+    return decorator

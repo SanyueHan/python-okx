@@ -2,12 +2,12 @@ import json
 
 import httpx
 
-from okx.rest_api import utils, consts as c
+from okx.rest_api import utils, consts
 
 
 class Client:
 
-    def __init__(self, api_key='-1', api_secret_key='-1', passphrase='-1', use_server_time=False, flag='1', base_api=c.API_URL):
+    def __init__(self, api_key='-1', api_secret_key='-1', passphrase='-1', use_server_time=False, flag='1', base_api=consts.API_URL):
         self.API_KEY = api_key
         self.API_SECRET_KEY = api_secret_key
         self.PASSPHRASE = passphrase
@@ -15,14 +15,16 @@ class Client:
         self.flag = flag
         self.client = httpx.Client(base_url=base_api, http2=True)
 
+    @utils.unify_error
     def _get(self, request_path, params: dict = None):
         return self.client.get(request_path + utils.parse_params_to_str(params),
-                               headers=self._get_header(c.GET, request_path, "")).json()
+                               headers=self._get_header("GET", request_path, "")).json()
 
+    @utils.unify_error
     def _post(self, request_path, params: dict = None):
         return self.client.post(request_path,
                                 json=params,
-                                headers=self._get_header(c.POST, request_path, json.dumps(params))).json()
+                                headers=self._get_header("POST", request_path, json.dumps(params))).json()
 
     def _get_header(self, method, request_path, body):
         if self.API_KEY != '-1':
@@ -39,7 +41,7 @@ class Client:
             return utils.get_timestamp()
 
     def _request_timestamp(self):
-        request_path = c.API_URL + c.SERVER_TIMESTAMP_URL
+        request_path = consts.API_URL + consts.SERVER_TIMESTAMP_URL
         response = self.client.get(request_path)
         if response.status_code == 200:
             return response.json()['ts']

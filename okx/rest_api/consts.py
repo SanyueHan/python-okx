@@ -9,9 +9,6 @@ OK_ACCESS_PASSPHRASE = 'OK-ACCESS-PASSPHRASE'
 
 APPLICATION_JSON = 'application/json'
 
-GET = "GET"
-POST = "POST"
-
 SERVER_TIMESTAMP_URL = '/api/v5/public/time'
 
 # account-complete-testcomplete
