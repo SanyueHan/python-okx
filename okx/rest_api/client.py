@@ -17,8 +17,8 @@ class Client:
 
     @utils.unify_error
     def _get(self, request_path, params: dict = None):
-        return self.client.get(request_path + utils.parse_params_to_str(params),
-                               headers=self._get_header("GET", request_path, "")).json()
+        request_path += utils.parse_params_to_str(params)
+        return self.client.get(request_path, headers=self._get_header("GET", request_path, "")).json()
 
     @utils.unify_error
     def _post(self, request_path, params: dict = None):
