@@ -55,7 +55,7 @@ def unify_error(func):
         try:
             response = func(*args, **kwargs)
         except httpx.HTTPError as e:
-            raise OkxRequestException() from e
+            raise OkxRequestException(f"HTTPError: {e}") from e
         if response['code'] != '0':
             raise OkxResponseException(f"code={response.get('code')}, 'msg={response.get('msg')}")
         return response
