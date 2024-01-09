@@ -56,7 +56,23 @@ def unify_error(func):
             response = func(*args, **kwargs)
         except httpx.HTTPError as e:
             raise OkxRequestException(f"HTTPError: {e}") from e
-        if response['code'] != '0':
-            raise OkxResponseException(f"code={response.get('code')}, 'msg={response.get('msg')}")
-        return response
+        code = response.get("code")
+        msg = response.get("msg")
+        if code == "0":
+            return response
+        if code == "1":
+            # bulk operation all failed
+            raise OkxResponseException(f"code={code}, msg={msg}, details={get_details_from_bulk_operation_response(response)}")
+        if code == "2":
+            # bulk operation partially successful
+            raise BulkOperationPartiallySuccessful(f"code={code}, msg={msg}, details={get_details_from_bulk_operation_response(response)}")
+        raise OkxResponseException(f"code={code}, msg={msg}")
     return decorator
+
+
+def get_details_from_bulk_operation_response(response):
+    details = {}
+    for res in response.get("data", []):
+        if scode := res.get("sCode", "0") != "0":
+            details[scode] = res.get("sMsg")
+    return details

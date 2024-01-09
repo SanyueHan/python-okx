@@ -10,3 +10,10 @@ class OkxRequestException(OkxApiException):
 
 class OkxResponseException(OkxApiException):
     pass
+
+
+class BulkOperationPartiallySuccessful(OkxResponseException):
+    """
+    code = 2
+    """
+    pass
