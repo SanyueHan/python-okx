@@ -18,7 +18,7 @@ class Instance(Enum):
 
     # SWAP
 
-    NULL = '', Currency.NULL, Currency.NULL, InstanceType.NULL, 0, 0, 0
+    NULL = '', Currency.NULL, Currency.NULL, InstanceType.NULL, 0, 0, 0, 0.0
 
     def __init__(self, id_: str, base: Currency, quote: Currency, instance_type: InstanceType,
                  price_precision: int, size_precision: int, amount_precision: int, min_size: float):
