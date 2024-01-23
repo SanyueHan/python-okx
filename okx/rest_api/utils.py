@@ -3,6 +3,7 @@ import base64
 import datetime
 import functools
 import httpx
+import json
 
 from okx.rest_api import consts as c
 from okx.rest_api.errors import *
@@ -53,19 +54,25 @@ def unify_error(func):
     @functools.wraps(func)
     def decorator(*args, **kwargs):
         try:
-            response = func(*args, **kwargs)
+            response: httpx.Response = func(*args, **kwargs)
         except httpx.HTTPError as e:
             raise OkxRequestException(f"HTTPError: {e}") from e
-        code = response.get("code")
-        msg = response.get("msg")
+
+        try:
+            result = response.json()
+        except json.decoder.JSONDecodeError:
+            raise OkxResponseException(response.text)
+
+        code = result.get("code")
+        msg = result.get("msg")
         if code == "0":
-            return response
+            return result
         if code == "1":
             # bulk operation all failed
-            raise OkxResponseException(f"code={code}, msg={msg}, details={get_details_from_bulk_operation_response(response)}")
+            raise OkxResponseException(f"code={code}, msg={msg}, details={get_details_from_bulk_operation_response(result)}")
         if code == "2":
             # bulk operation partially successful
-            raise BulkOperationPartiallySuccessful(f"code={code}, msg={msg}, details={get_details_from_bulk_operation_response(response)}")
+            raise BulkOperationPartiallySuccessful(f"code={code}, msg={msg}, details={get_details_from_bulk_operation_response(result)}")
         raise OkxResponseException(f"code={code}, msg={msg}")
     return decorator
 

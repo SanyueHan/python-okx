@@ -18,13 +18,13 @@ class Client:
     @utils.unify_error
     def _get(self, request_path, params: dict = None):
         request_path += utils.parse_params_to_str(params)
-        return self.client.get(request_path, headers=self._get_header("GET", request_path, "")).json()
+        return self.client.get(request_path, headers=self._get_header("GET", request_path, ""))
 
     @utils.unify_error
     def _post(self, request_path, params: dict = None):
         return self.client.post(request_path,
                                 json=params,
-                                headers=self._get_header("POST", request_path, json.dumps(params))).json()
+                                headers=self._get_header("POST", request_path, json.dumps(params)))
 
     def _get_header(self, method, request_path, body):
         if self.API_KEY != '-1':
